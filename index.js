@@ -5,18 +5,22 @@ const port = 3000;
 
 app.use(cors());
 
-app.get("/github_scrape", (req, res) => {
-  console.log("github_scrape connected...");
-  const data = scrapeGithub("https://github.com/domferris");
-  console.log(data);
-  res.json(data);
+app.get("/scrape_github", async (req, res) => {
+  console.log("scrape_github connected...");
+
+  const data = await scrapeGithub("https://github.com/domferris");
+
+  // console.log("inside call => ");
+  // console.log(data);
+
+  res.send(data);
 });
 
 app.listen(port, () =>
   console.log(`Profile backend listening at http://localhost:${port}`)
 );
 
-// PUPPETEER
+////////////////// PUPPETEER //////////////////
 const puppeteer = require("puppeteer");
 
 const scrapeGithub = async (profile) => {
@@ -32,16 +36,18 @@ const scrapeGithub = async (profile) => {
   );
 
   const data = {
-    contributions: 0,
+    contributionsNum: 0,
   };
 
   const contributionsNum = parseInt(contributions, 10);
 
-  console.log(data);
-  data.contributions += contributionsNum;
+  data.contributionsNum += contributionsNum;
+  console.log("inside function => ");
   console.log(data);
 
   await browser.close();
 
   return data;
 };
+
+////////////////// CONTACT FORM //////////////////
