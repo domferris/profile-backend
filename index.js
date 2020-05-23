@@ -5,6 +5,7 @@ const port = 3000;
 
 app.use(cors());
 
+// RETRIEVES GITHUB CONTRIBUTIONS NUMBER
 app.get("/scrape_github", async (req, res) => {
   console.log("scrape_github connected...");
 
@@ -42,8 +43,9 @@ const scrapeGithub = async (profile) => {
   const contributionsNum = parseInt(contributions, 10);
 
   data.contributionsNum += contributionsNum;
-  console.log("inside function => ");
-  console.log(data);
+
+  // console.log("inside function => ");
+  // console.log(data);
 
   await browser.close();
 
