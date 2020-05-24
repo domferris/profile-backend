@@ -17,8 +17,8 @@ app.get("/scrape_github", async (req, res) => {
   res.send(data);
 });
 
-app.listen(port, () =>
-  console.log(`Profile backend listening at http://localhost:${port}`)
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`Profile backend listening at ${this.address().port}`)
 );
 
 ////////////////// PUPPETEER //////////////////
