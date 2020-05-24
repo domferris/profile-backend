@@ -17,9 +17,9 @@ app.get("/scrape_github", async (req, res) => {
   res.send(data);
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`Profile backend listening at ${this.address().port}`)
-);
+app.listen(process.env.PORT || 3000, function () {
+  console.log(`Profile backend listening at ${this.address().port}`);
+});
 
 ////////////////// PUPPETEER //////////////////
 const puppeteer = require("puppeteer");
