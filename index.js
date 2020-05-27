@@ -25,7 +25,7 @@ app.listen(process.env.PORT || 3000, function () {
 const puppeteer = require("puppeteer");
 
 const scrapeGithub = async (profile) => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.goto(profile);
 
