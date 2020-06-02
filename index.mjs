@@ -1,11 +1,14 @@
-import scrapeGithub from "./scrape_github";
+import express from "express";
+import cors from "cors";
+import scrapeGithub from "./scrape_github.mjs";
+import bodyParser from "body-parser";
+import "./contact-form.mjs";
 
-const express = require("express");
-const cors = require("cors");
 const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
 app.get("/scrape_github", async (req, res) => {
@@ -14,6 +17,13 @@ app.get("/scrape_github", async (req, res) => {
   const data = await scrapeGithub("https://github.com/domferris");
 
   res.send(data);
+});
+
+// CONTACT FORM
+app.post("/contact", async (req, res) => {
+  console.log("contact connected...");
+  console.log(req.body);
+  // sendEmail(req.body)
 });
 
 app.listen(process.env.PORT || 3000, function () {

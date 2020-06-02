@@ -1,5 +1,5 @@
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
 const scrapeGithub = async (profile) => {
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });

@@ -2,7 +2,7 @@
   "name": "profile-backend",
   "version": "1.0.0",
   "description": "Backend for my personal profile.",
-  "main": "index.js",
+  "main": "index.mjs",
   "repository": "https://github.com/domferris/profile-backend",
   "author": "Dominic Ferris <ferris.dominic@gmail.com>",
   "license": "MIT",
