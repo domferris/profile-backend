@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import scrapeGithub from "./scrape_github.mjs";
+import sendEmail from "./contact-form.mjs";
 import bodyParser from "body-parser";
 import "./contact-form.mjs";
 
@@ -22,8 +23,8 @@ app.get("/scrape_github", async (req, res) => {
 // CONTACT FORM
 app.post("/contact", async (req, res) => {
   console.log("contact connected...");
-  console.log(req.body);
-  // sendEmail(req.body)
+  // console.log(req.body);
+  sendEmail(req.body);
 });
 
 app.listen(process.env.PORT || 3000, function () {

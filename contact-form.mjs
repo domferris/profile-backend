@@ -1,2 +1,5 @@
-console.log("testing123");
-// receive post request content from form
+const sendEmail = (object) => {
+  console.log(object);
+};
+
+export default sendEmail;
