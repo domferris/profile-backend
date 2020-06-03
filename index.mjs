@@ -24,7 +24,9 @@ app.get("/scrape_github", async (req, res) => {
 app.post("/contact", async (req, res) => {
   console.log("contact connected...");
   // console.log(req.body);
-  sendEmail(req.body);
+  // sendEmail(req.body);
+
+  sendEmail(req.body).catch(console.error);
 });
 
 app.listen(process.env.PORT || 3000, function () {
