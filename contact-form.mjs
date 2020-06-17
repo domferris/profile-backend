@@ -9,15 +9,15 @@ const sendEmail = async (object) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "contactdomferris@gmail.com",
-      pass: "Dummy2020test!",
+      user: process.env.CONTACT_SENDER_EMAIL,
+      pass: process.env.CONTACT_SENDER_PASSWORD,
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"no-reply" <sending@address.com>', // sender address
-    to: "me@domferris.com", // list of receivers
+    to: process.env.CONTACT_RECEIVER_EMAIL, // list of receivers
     subject: `New message from ${object.name}`, // Subject line
     text: object.message, // plain text body
     html: `<p>Name: ${object.name}</p>
