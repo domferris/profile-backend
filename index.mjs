@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
 app.get("/scrape_github", async (req, res) => {
@@ -23,10 +23,10 @@ app.get("/scrape_github", async (req, res) => {
 // CONTACT FORM
 app.post("/contact", async (req, res) => {
   console.log("contact connected...");
-  // console.log(req.body);
-  // sendEmail(req.body);
 
-  sendEmail(req.body).catch(console.error);
+  await sendEmail(req.body).catch(console.error);
+  // handle success or error
+  res.send({ status: 200 });
 });
 
 app.listen(process.env.PORT || 3000, function () {
