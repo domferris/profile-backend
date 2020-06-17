@@ -12,11 +12,7 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const environment = process.env.NODE_ENV || "development";
-console.log(environment);
-if (environment == "development") {
-  dotenv.config();
-}
+dotenv.config();
 
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
 app.get("/scrape_github", async (req, res) => {
