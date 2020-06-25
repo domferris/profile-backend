@@ -26,10 +26,12 @@ app.get("/scrape_github", async (req, res) => {
 // CONTACT FORM
 app.post("/contact", async (req, res) => {
   console.log("contact connected...");
-
-  await sendEmail(req.body).catch(console.error);
-  // handle success or error
-  res.send({ status: 200 });
+  try {
+    await sendEmail(req.body);
+    res.send({ status: 200 });
+  } catch (err) {
+    res.status(500).json({ error: err.toString() });
+  }
 });
 
 app.listen(process.env.PORT || 3000, function () {

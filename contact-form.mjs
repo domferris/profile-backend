@@ -1,8 +1,6 @@
 import nodemailer from "nodemailer";
 
 const sendEmail = async (object) => {
-  console.log(object);
-
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -28,6 +26,7 @@ const sendEmail = async (object) => {
   transporter.verify(function (error, success) {
     if (error) {
       console.log(error);
+      throw new Error(error.toString());
     } else {
       console.log("Server is ready to take our messages");
     }
