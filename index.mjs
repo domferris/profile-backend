@@ -9,7 +9,12 @@ import "./contact_form.mjs";
 const app = express();
 const port = 3000;
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 dotenv.config();
