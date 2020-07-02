@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import scrapeGithub from "./scrape_github.mjs";
-import sendEmail from "./contact-form.mjs";
+import sendEmail from "./contact_form.mjs";
 import bodyParser from "body-parser";
-import "./contact-form.mjs";
+import "./contact_form.mjs";
 
 const app = express();
 const port = 3000;
