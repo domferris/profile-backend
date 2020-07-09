@@ -14,15 +14,20 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+dotenv.config();
+
+console.log("origin", process.env.CORS_ORIGIN);
+console.log("env", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV === "production") {
+  console.log("in production");
   app.use(cors(corsOptions));
 } else {
+  console.log("in development");
   app.use(cors());
 }
 
 app.use(bodyParser.json());
-
-dotenv.config();
 
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
 app.get("/scrape_github", async (req, res) => {
