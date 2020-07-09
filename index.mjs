@@ -9,12 +9,13 @@ import "./contact_form.mjs";
 const app = express();
 const port = 3000;
 
+dotenv.config();
+
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
+  credentials: true,
   optionsSuccessStatus: 200,
 };
-
-dotenv.config();
 
 console.log("origin", process.env.CORS_ORIGIN);
 console.log("env", process.env.NODE_ENV);
@@ -30,16 +31,16 @@ if (process.env.NODE_ENV === "production") {
 app.use(bodyParser.json());
 
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
-app.get("/scrape_github", async (req, res) => {
+app.get("/scrape_github", cors(corsOptions), async (req, res) => {
   console.log("scrape_github connected...");
-
+  // console.log(req);
   const data = await scrapeGithub("https://github.com/domferris");
 
   res.send(data);
 });
 
 // CONTACT FORM
-app.post("/contact", async (req, res) => {
+app.post("/contact", cors(corsOptions), async (req, res) => {
   console.log("contact connected...");
   try {
     await sendEmail(req.body);
