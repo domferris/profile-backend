@@ -12,16 +12,17 @@ const port = 3000;
 dotenv.config();
 
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: "https://domferris.com",
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
-console.log("origin", process.env.CORS_ORIGIN);
+// console.log("origin", process.env.CORS_ORIGIN);
 console.log("env", process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === "production") {
   console.log("in production");
+  console.log("cors options", corsOptions);
   app.use(cors(corsOptions));
 } else {
   console.log("in development");
@@ -33,7 +34,7 @@ app.use(bodyParser.json());
 // RETRIEVES GITHUB CONTRIBUTIONS NUMBER VIA PUPPETEER
 app.get("/scrape_github", cors(corsOptions), async (req, res) => {
   console.log("scrape_github connected...");
-  // console.log(req);
+  console.log("request: ", req);
   const data = await scrapeGithub("https://github.com/domferris");
 
   res.send(data);
