@@ -17,11 +17,10 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-if (process.env.NODE_ENV === "production") {
-  console.log("cors options", corsOptions);
-  // app.use(cors(corsOptions));
+if (process.env.NODE_ENV === "development") {
+  app.use(cors());
 } else {
-  // app.use(cors());
+  app.use(cors(corsOptions));
 }
 
 app.use(bodyParser.json());
